@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href ="index.css">
+  <script src="/socket.io/socket.io.js"></script>
+  <title>Document</title>
+</head>
+<body>
+  <h1>Web Socket Chat Room</h1>
+  <h2>Name</h2>
+  <h3>track</h3>
+  <form action="">
+    <input/>
+    <button>Send Message</button>
+  </form>
+  <ul style="list-style:none">
+
+  </ul>
+  <script>
+console.log("this is workinging")
+const socket = io();
+const input = document.querySelector('input')
+const message = input.value; 
+console.log(message)
+const form = document.querySelector('form')
+form.addEventListener('submit',(e)=>{e.preventDefault(); 
+  const message = input.value; 
+  socket.emit ('New Message',message )
+  console.log (message);
+  input.value=""}
+)
+const h3 = document.querySelector('h3')
+const user = h3.innerText
+console.log(user)
+socket.on('Hey New Message',(message)=>{
+  console.log(message)
+  const newLi = document.createElement('li')
+  newLi.innerText = `${user} says: ${message}`
+  const ul = document.querySelector('ul')
+  ul.append(newLi)
+})
+  </script>
+
+</body>
+</html>
